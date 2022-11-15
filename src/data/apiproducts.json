@@ -1,0 +1,107 @@
+{
+
+    "accessories": [
+        {
+            "id":"100001",
+            "product_name":"camera",
+            "image":"https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "cost": 300,
+            "description":"",
+            "brand":""
+        }, 
+        {
+            "id":"100002",
+            "product_name":"watch",
+            "image":"https://cdn.shopify.com/s/files/1/0024/9803/5810/products/588882-Product-0-I-637877757177442198.jpg?v=1652143373",
+            "cost": 300,
+            "description":"",
+            "brand":""
+        },
+        {
+            "id":"100003",
+            "product_name":"Phone",
+            "image":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-product-red-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315758",
+            "cost": 1000,
+            "description":"",
+            "brand":"iphone"
+        }
+    ],
+    "jwellery": [
+        {
+            "id": "100001",
+            "product_name": "Pouch",
+            "image":"https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100002",
+            "product_name": "Pouch",
+            "image":"https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100003",
+            "product_name": "Pouch",
+            "image":"https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        }
+    ],
+    "dresCollection": [
+        {
+            "id": "100001",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100002",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100003",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        }
+    ],
+    "footwear": [
+        {
+            "id": "100001",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100002",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        },
+        {
+            "id": "100003",
+            "product_name": "Pouch",
+            "image": "",
+            "cost": 300,
+            "description": "",
+            "brand": ""
+        }
+    ]
+}

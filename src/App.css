@@ -1,0 +1,31 @@
+.navbar-color-bg
+{
+  background-color: #d1677952;
+  color:white !important;
+}
+.navbar-color
+{
+  color:white !important;
+}
+.snavbar-sli-smargin
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.cars-height
+{
+  height: 500px;
+}
+.inline-collection
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.collection-center
+{
+  display: block;
+  margin-left: auto;
+  margin-right:auto;
+}
