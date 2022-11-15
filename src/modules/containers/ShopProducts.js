@@ -1,6 +1,6 @@
 const ShopProducts = () => {
     return(
-        <div> products</div>
+        <div> shop products</div>
     );
 }
 export default ShopProducts;
