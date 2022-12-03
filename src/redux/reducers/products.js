@@ -45,7 +45,7 @@ const fetchProducts = (state = initialState, action) =>{
                 //console.log(state.Carts)
             }
             else{
-                console.log(state.Carts)
+                //console.log(state.Carts)
                 let check = false;
                 state.Carts.map((item,key)=>{
                     if(item.id!==action.payload.id){
