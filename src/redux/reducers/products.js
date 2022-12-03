@@ -40,9 +40,7 @@ const fetchProducts = (state = initialState, action) =>{
                     image:action.payload.image,
                     cost:action.payload.price
                 } 
-                //state.Carts.push(cart);
                 state.Carts=cart; 
-                //console.log(state.Carts)
             }
             else{
                 //console.log(state.Carts)
