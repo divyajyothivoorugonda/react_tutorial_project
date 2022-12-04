@@ -1,28 +1,50 @@
 import { connect } from 'react-redux';
 import React from 'react'
-import CustomCards from './CustomCards'
 import Navbar from './Navbar';
-import { fetchProducts } from '../../redux/actions/actions'
-function Cart(props) {
+import { IncreaseQuantity,DecreaseQuantity,DeleteCart } from '../../redux/actions/actions';
+function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
+  let ListCart = [];
+    let TotalCart=0;
+   Object.keys(items.Carts).forEach(function(item){
+        TotalCart+=items.Carts[item].quantity * items.Carts[item].price;
+        ListCart.push(items.Carts[item]);
+    });
+    function TotalPrice(price,tonggia){
+        return Number(price * tonggia).toLocaleString('en-US');
+    }
+
   return (
     <div>
       <Navbar />
 
       <h1>Your Shop Products</h1>
 
-      {props.isloading === false ? props.products.map((item) => { return <CustomCards key={item.id} item={item} /> }) : 'loading'}
-
-
+      {ListCart.map((item,key) => { return (        <div className="card" style={{width: '18rem'}}>
+            <img className="card-img-top" src={item.image} alt="Card image cap" style={{width: '150px',height:'100px'}} />
+            <div className="card-body">
+                <h5 className="card-title">{item.product_name}</h5>
+                <p>Price: {item.cost} X  {item.quantity}</p>
+                <p>Total price for this item: {TotalPrice(item.cost, item.quantity)} </p>
+                <span className="btn btn-primary" style={{margin:'2px'}} onClick={()=>DecreaseQuantity(key)}>-</span>
+                <span className="btn" style={{borderColor:'black'}}>{item.quantity}</span>
+                <span className="btn btn-primary" style={{margin:'2px'}} onClick={()=>IncreaseQuantity(key)}>+</span>
+                <span className="btn btn-primary" style={{margin:'20px'}} onClick={()=>DeleteCart(key)}>X</span>
+            </div>
+        </div>
+) })}
+<p>{Number(TotalCart).toLocaleString("en-US")} $</p>
     </div>
   )
 }
-const mapStateToProps = (state) => {
-  console.log(state.fetchProducts.Carts);
-  return {
-    products: state.fetchProducts.productslist,
-    products: state.fetchProducts.Carts,
-    // numberCart:state._todoProduct.numberCart,
-    isloading: state.fetchProducts.loading,
-  }
+
+const mapStateToProps = state =>{
+    return{
+        items:state.fetchProducts
+    }
 }
-export default connect(mapStateToProps, null)(Cart)
+
+export default connect(mapStateToProps, {
+  IncreaseQuantity,
+  DecreaseQuantity,
+  DeleteCart
+})(Cart);

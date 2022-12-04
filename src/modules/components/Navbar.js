@@ -1,6 +1,9 @@
+import CustomCards from '../components/CustomCards';
 import {connect} from 'react-redux';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 const Navbar = (props) => {
+    const [searchInput, setSearchInput] = useState('');
     return (
         <nav className="navbar navbar-expand-lg navbar-color-bg">
             <div className="container-fluid">
@@ -27,7 +30,8 @@ const Navbar = (props) => {
                         </li>
                     </ul>
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <input className="form-control me-2" type="search" value={searchInput}
+                onChange={e => setSearchInput(e.target.value)} placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -51,6 +55,20 @@ const Navbar = (props) => {
                             </svg>
                         </li>
                     </ul>
+                    <div className="clearfix mxn1">
+                    <ul 
+                    value={searchInput}
+                    data={props.products}
+                    renderResults={results =>(
+                        <p className="justify-content-center">
+                            {results.map((item, i)=>(
+                                <CustomCards data={item} key={i} />
+                            ))}
+                        </p>
+                    )}
+                />
+            </div>
+
                 </div>
             </div>
         </nav>
@@ -59,7 +77,7 @@ const Navbar = (props) => {
 const mapStateToProps = (state) => {
     return {
         numberCart:state.fetchProducts.numberCart,
-        //products: state.fetchProducts.productslist,
+        products: state.fetchProducts.productslist,
 
     }
 }

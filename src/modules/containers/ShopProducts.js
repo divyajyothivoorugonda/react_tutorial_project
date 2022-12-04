@@ -44,7 +44,7 @@ const ShopProducts = (props) => {
                 return (
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" onChange={categoryProducts} id={index} value={category} />
-                        <label className="form-check-label" for="flexCheckDefault" checked>
+                        <label className="form-check-label" htmlFor="flexCheckDefault" checked>
                             {category}
                         </label></div>) 
             })}

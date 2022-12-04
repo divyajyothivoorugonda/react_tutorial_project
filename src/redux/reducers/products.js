@@ -30,23 +30,22 @@ const fetchProducts = (state = initialState, action) =>{
                     ...state
                 }
         case types.ADD_CART:
-            console.log(action.payload.decription);
             if(state.numberCart===0){
                 let cart = {
                     id:action.payload.id,
                     quantity:1,
-                    name:action.payload.product_name,
-                    decription:action.payload.decription,
+                    product_name:action.payload.product_name,
+                    description:action.payload.description,
                     image:action.payload.image,
-                    cost:action.payload.price
+                    cost:action.payload.cost
                 } 
-                state.Carts=cart; 
+                //state.Carts=[cart];
+                state.Carts.push(cart);  
             }
             else{
-                //console.log(state.Carts)
                 let check = false;
                 state.Carts.map((item,key)=>{
-                    if(item.id!==action.payload.id){
+                    if(item.id===action.payload.id){
                         state.Carts[key].quantity++;
                         check=true;
                     }
@@ -55,10 +54,11 @@ const fetchProducts = (state = initialState, action) =>{
                     let _cart = {
                         id:action.payload.id,
                         quantity:1,
-                        name:action.payload.name,
+                        product_name:action.payload.product_name,
+                        description:action.payload.description,
                         image:action.payload.image,
-                        price:action.payload.price
-                    }
+                        cost:action.payload.cost
+                        }
                     state.Carts.push(_cart);
                 }
             }

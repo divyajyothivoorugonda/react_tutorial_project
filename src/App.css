@@ -29,3 +29,7 @@
   margin-left: auto;
   margin-right:auto;
 }
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #e772ae !important;
+  border: 1px solid black !important;
+}
