@@ -6,6 +6,7 @@ import Login from './modules/containers/Login'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShopProducts from './modules/containers/ShopProducts';
 import Carts from './modules/components/Cart';
+import WishItems from './modules/components/WishItems';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/products" element={<ShopProducts/>}/>
           <Route path="/carts" element={<Carts/>}/>
+          <Route path="/wishitems" element={<WishItems/>}/>
         </Routes>
         </BrowserRouter>
     </React.Fragment>

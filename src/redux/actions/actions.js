@@ -24,6 +24,12 @@ export function AddCart(payload){
         payload
     }
 }
+export function WishList(payload){
+    return {
+        type:'WISH_LIST',
+        payload
+    }
+}
 export function UpdateCart(payload){
     return {
         type:'UPDATE_CART',

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
-import { fetchProducts, AddCart } from '../../redux/actions/actions';
+import { fetchProducts, AddCart, WishList } from '../../redux/actions/actions';
 import CustomCards from '../components/CustomCards';
 
 const ShopProducts = (props) => {
@@ -48,7 +48,7 @@ const ShopProducts = (props) => {
                             {category}
                         </label></div>) 
             })}
-            {props.isloading === false ? props.products.map((item) => { return <CustomCards AddCart={props.AddCart} key={item.id} item={item} /> }) : 'loading'}
+            {props.isloading === false ? props.products.map((item) => { return <CustomCards AddCart={props.AddCart} WishList={props.WishList} key={item.id} item={item} /> }) : 'loading'}
         </div>
     )
 }
@@ -63,6 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         AddCart: item => dispatch(AddCart(item)),
+        WishList: item => dispatch(WishList(item)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ShopProducts);

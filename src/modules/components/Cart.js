@@ -6,7 +6,7 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
   let ListCart = [];
     let TotalCart=0;
    Object.keys(items.Carts).forEach(function(item){
-        TotalCart+=items.Carts[item].quantity * items.Carts[item].price;
+        TotalCart+=items.Carts[item].quantity * items.Carts[item].cost;
         ListCart.push(items.Carts[item]);
     });
     function TotalPrice(price,tonggia){
@@ -40,6 +40,8 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
 const mapStateToProps = state =>{
     return{
         items:state.fetchProducts
+        //items: state.fetchProducts['Carts']
+
     }
 }
 
