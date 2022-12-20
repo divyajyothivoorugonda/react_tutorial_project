@@ -29,11 +29,11 @@ const Navbar = (props) => {
                             <a className="nav-link navbar-color" href="/">Contact</a>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" value={searchInput}
-                onChange={e => setSearchInput(e.target.value)} placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <span className="d-flex" role="search">
+                        <input className="form-control me-2" type="search"  /* value={searchInput} */ 
+                 onChange={e => setSearchInput(e.target.value)}  placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" onClick={()=>props.SearchList(searchInput)} type="submit">Search</button>
+                    </span>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     
                         <li className="nav-item snavbar-sli-smargin">
@@ -56,17 +56,7 @@ const Navbar = (props) => {
                         </li>
                     </ul>
                     <div className="clearfix mxn1">
-                    <ul 
-                    value={searchInput}
-                    data={props.products}
-                    renderResults={results =>(
-                        <p className="justify-content-center">
-                            {results.map((item, i)=>(
-                                <CustomCards data={item} key={i} />
-                            ))}
-                        </p>
-                    )}
-                />
+                 
             </div>
 
                 </div>
@@ -78,7 +68,7 @@ const mapStateToProps = (state) => {
     return {
         numberCart:state.fetchProducts.numberCart,
         WListNumber:state.fetchProducts.WListNumber,
-        products: state.fetchProducts.productslist,
+        //products: state.fetchProducts.productslist,
 
     }
 }

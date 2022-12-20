@@ -3,14 +3,13 @@ import React from 'react'
 import Navbar from './Navbar';
 import { IncreaseQuantity,DecreaseQuantity,DeleteCart } from '../../redux/actions/actions';
 function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
-  let ListCart = [];
-    let TotalCart=0;
+    let ListCart = [], TotalCart=0;
    Object.keys(items.Carts).forEach(function(item){
         TotalCart+=items.Carts[item].quantity * items.Carts[item].cost;
         ListCart.push(items.Carts[item]);
     });
-    function TotalPrice(price,tonggia){
-        return Number(price * tonggia).toLocaleString('en-US');
+    function TotalPrice(price,TotalCart){
+        return Number(price * TotalCart).toLocaleString('en-US');
     }
 
   return (

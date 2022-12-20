@@ -1,9 +1,9 @@
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
-import product from '../../data/products.json'
 import { fetchProducts, AddCart, WishList, SearchList } from '../../redux/actions/actions';
 import CustomCards from '../components/CustomCards';
+
 const ShopProducts = (props) => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -11,30 +11,35 @@ const ShopProducts = (props) => {
     const [discount, setDiscount] = useState(0);
     const [getCategory, setCategoryData] = useState([]);
 
-const handleCategoryChange = (id) =>{
-        const changeCheckedStatus = getCategory.map((item)=>
-        item.id === id ? {...item,checked: !item.checked} :item
-        )
-        setCategoryData(changeCheckedStatus)
-    }
-    const categories = [...new Set(props.products.map(item => item.category))]
-    useEffect(() => {
-        setProducts(props.products)
-        const data = product.map((item)=>{
-            const {category,id} = item
-            return {category,id,checked:false}
-        })
-        const data2 = [...new Map(data.map((item)=>[item['category'],item])).values()]
-        console.log(data2)
-        setCategoryData(data2)
-        setIsLoading(false)
-    }, [])
-    //console.log(category)
-
+    let prodFiltCom = [], filProds = [], checkedCat = false, numOfProds = 0
+    const newData = [...new Set(props.products.map(item => item.category))]
+    console.log(newData);
+    const categoryProducts = event => {
+        if (event.target.checked) {
+            if (!checkedCat) { prodFiltCom = []; }
+            prodFiltCom.push(props.products.filter((item) => item.category === event.target.value))
+            filProds = prodFiltCom.flat(Infinity)
+            checkedCat = true
+            numOfProds = numOfProds + 1
+        }
+        else if (!event.target.checked) {
+            numOfProds = numOfProds - 1
+            if (numOfProds < 1) {
+                filProds = []
+                checkedCat = false;
+                filProds = props.products;
+            }
+            else {
+                filProds = filProds.filter((item) => item.category !== event.target.value)
+            }
+        }
+        console.log(filProds)
+    };
 
     return (
         <div>
             <Navbar SearchList={props.SearchList} />
+
             <div style={{ float: 'right' }}>
                 <select className="custom-select custom-select-lg mb-3" >
                     <option value="asec">Price: Low to High</option>
@@ -75,10 +80,10 @@ const handleCategoryChange = (id) =>{
                         30 % and Above
                     </label>
 
-                    {getCategory.map((category, index) => {
+                    {newData.map((category, index) => {
                         return (
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" onChange={()=>handleCategoryChange(category.id)} id={index} value={category} />
+                                <input className="form-check-input" type="checkbox" onChange={categoryProducts} id={index} value={category} />
                                 <label className="form-check-label" htmlFor="flexCheckDefault" checked>
                                     {category}
                                 </label></div>)

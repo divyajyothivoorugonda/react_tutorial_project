@@ -6,9 +6,10 @@ const initialState = {
     errMessage: '',
     fetcherror: false,
     numberCart: 0,
-    WListNumber:0,
+    WListNumber: 0,
     Carts: [],
-    WList: []
+    WList: [],
+    SList: 0
 }
 const fetchProducts = (state = initialState, action) => {
     switch (action.type) {
@@ -31,42 +32,45 @@ const fetchProducts = (state = initialState, action) => {
             return {
                 ...state
             }
-        case types.ADD_CART:
-            if (state.numberCart === 0) {
-                let cart = {
-                    id: action.payload.id,
-                    quantity: 1,
-                    product_name: action.payload.product_name,
-                    description: action.payload.description,
-                    image: action.payload.image,
-                    cost: action.payload.cost
-                }
-                //state.Carts=[cart];
-                state.Carts.push(cart);
-            }
-            else {
-                let check = false;
-                state.Carts.map((item, key) => {
-                    if (item.id === action.payload.id) {
-                        state.Carts[key].quantity++;
-                        check = true;
-                    }
-                });
-                if (!check) {
-                    let _cart = {
-                        id: action.payload.id,
-                        quantity: 1,
-                        product_name: action.payload.product_name,
-                        description: action.payload.description,
-                        image: action.payload.image,
-                        cost: action.payload.cost
-                    }
-                    state.Carts.push(_cart);
-                }
-            }
+        case types.SEARCH_LIST:
             return {
                 ...state,
-                numberCart: state.numberCart + 1
+                productslist:state.productslist.filter(item => {
+                    //return item.product_name.toLowerCase() === action.payload.toLowerCase()
+                    return (item.product_name.toLowerCase()).includes(action.payload.toLowerCase())
+                })
+            }
+
+        case types.ADD_CART:
+            let cart = {
+                id: action.payload.id,
+                quantity: 1,
+                product_name: action.payload.product_name,
+                description: action.payload.description,
+                image: action.payload.image,
+                cost: action.payload.cost
+            }
+            /*            if (state.numberCart === 0) {
+                            //state.Carts=[cart];
+                            state.Carts.push(cart);
+                        }
+                        else { */
+            let check = false;
+            state.Carts.map((item, key) => {
+                if (item.id === action.payload.id) {
+                    state.Carts[key].quantity++;
+                    check = true;
+                }
+            });
+            if (!check) {
+                state.Carts.push(cart);
+                state.numberCart = state.numberCart + 1
+            }
+            //}
+            return {
+                ...state,
+                //numberCart: state.numberCart + 1
+                numberCart: state.numberCart
             }
         case types.INCREASE_QUANTITY:
             state.numberCart++
@@ -117,17 +121,11 @@ const fetchProducts = (state = initialState, action) => {
                     }
                 });
             }
-
             return {
                 ...state,
-                WListNumber : state.WList.length
+                WListNumber: state.WList.length
             }
-
-
-
-
         default: return state;
-
     }
 }
 export default fetchProducts;

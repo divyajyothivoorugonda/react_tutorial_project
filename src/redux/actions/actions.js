@@ -30,6 +30,14 @@ export function WishList(payload){
         payload
     }
 }
+
+export function SearchList(payload){
+    return{
+        type:'SEARCH_LIST',
+        payload
+    }
+
+}
 export function UpdateCart(payload){
     return {
         type:'UPDATE_CART',
